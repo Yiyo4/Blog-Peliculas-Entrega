@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<main>
+    <div class="container navbar-light bg-light w-75 mt-5 rounded-1 shadow">
+        <div class="row align-items-sm-stretch container-login">
+            <div class="col bg-img d-none d-lg-block col-md-5 col-xl-6"></div>
+
+            <div class="col rounded-end">
+                {% if success %}
+                <div id="success" class="alert alert-success text-center" role="alert">
+                    <h5>{{ success }}</h5>
+                </div>
+                {% endif %}
+                {% if error %}
+                <div id="error" class="alert alert-danger text-center" role="alert">
+                    <h5>{{ error }}</h5>
+                </div>
+                {% endif %}
+            
+                <h2 class="fw-bold text-center py-5">Recupera tu contraseña</h2>
+
+                <form action="/recuperacion/" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" id="enviar" class="btn btn-primary">Recuperar contraseña</button>
+                    </div>
+                    <div class="my-3 text-center">
+                        <span>¿No tienes cuenta? <a href="/registro">Regístrate</a></span>
+                    </div>
+                    <div class="my-3 text-center">
+                        <span>¿Ya tienes una cuenta? <a href="/login">Inicia Sesión</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

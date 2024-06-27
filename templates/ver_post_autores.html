@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<main>
+    <section class="mt-4 pt-4 pb-4" >
+        <div class="container">
+          <div class="row  pb-4">
+            <div class="col-12">
+                <h1 class="h1 my-5"> Revisa el contenido</h1>
+            </div>
+            <br>
+            {% for post in posts %}
+       
+            <div class="col-12">
+              <div class="card ">
+                <img src="/static/{{post.img}}" class="card-img-top" alt="...">
+                
+                <div class="card-body">
+                  <h5 class="card-title">{{post.titulo}}</h5>
+                  <span class="badge bg-primary">{{post.autor}}</span>
+                  <br>
+                  {% for cat in post.posts.all %}
+                  <span class="badge bg-warning text-dark ">{{cat}}</span>
+                  {% endfor %}
+                  
+                  <p class="card-text text-truncate">{{post.contenido}}</p>
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <form action="/post/{{post.id}}">
+                      <button type="submit" class="btn btn-primary">Leer post</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+    
+          </div>
+    
+    
+          
+    
+    
+        </div>
+      </section>
+    
+</main>
+{% endblock%}

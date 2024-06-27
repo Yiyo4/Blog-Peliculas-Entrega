@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block content%}
+<!-- //////////////////////////////////////////////// main  -->
+<main>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-12 text-center">
+            <span class="display-1 d-block">
+                {% if error %}
+                <div id="error" class="alert alert-danger text-center" role="alert">
+                    <h5>{{ error }}</h5>
+                </div>
+                {% endif %}
+                {% if succes %}
+                <div id="succes" class="alert alert-success text-center" role="alert">
+                    <h5>{{ succes }}</h5>
+                </div>
+                {% endif%}
+            </span>
+            
+            <a href="/" class="btn btn-link">Vuelve al Inicio</a>
+            </div>
+        </div>
+    </div>
+</main>
+  <!-- //////////////////////////////////////////////// end main  -->
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación de contraseña</title>
+</head>
+<body>
+    <h1>Hola, {{ nombre }} {{ a_paterno }} {{ a_materno }}</h1>
+    <p>Hemos recibido una solicitud para restablecer tu contraseña. Tu nueva contraseña es:</p>
+    <p><strong>{{ new_password }}</strong></p>
+    <p>Te recomendamos que inicies sesión</p>
+    <p>Puedes hacerlo desde el siguiente enlace:</p>
+    <p><a href="{{url}}:8000/login/">{{url}}:8000/login/</a></p>
+    <p>Si no solicitaste un cambio de contraseña, por favor ignora este correo.</p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <!-- //////////////////////////////////////////////// main  -->
+    <main>
+        <div class="container navbar-light bg-light w-75 mt-5 rounded-1 shadow" style="background-color: #cccccc;">
+
+            <div class="row align-items-sm-stretch container-login">
+                <div class="col bg-img d-none d-lg-block col-md-5 col-xl-6"></div>
+
+                <div class="col rounded-end">
+                    {% if error %}
+                    <div id="error" class="alert alert-danger text-center" role="alert">
+                        <h5>{{ error }}</h5>
+                    </div>
+                    {% endif %}
+                    {% if succes %}
+                    <div id="succes" class="alert alert-success text-center" role="alert">
+                        <h5>{{ succes }}</h5>
+                    </div>
+                    {% endif%}
+                    <h2 class="fw-bold text-center">Completa la información de tu perfil</h2>
+
+                    <form action="/registro/{{id}}/" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                        <div class="mb-4">
+                            <label for="nickname" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" name="nickname">
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="mb-4">
+                            <p>¿Con qué género te identificas?</p>
+                            <input type="radio" id="masculino" name="genero" value="H">
+                            <label for="masculino">Masculino</label><br>
+                            <input type="radio" id="femenino" name="genero" value="M">
+                            <label for="femenino">Femenino</label><br>
+                            <input type="radio" id="nada" name="genero" value="N" checked="checked">
+                            <label for="nada">Prefiero no decirlo</label><br>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" id="enviar" class="btn btn-primary">Completar Registro</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- //////////////////////////////////////////////// end main  -->
+{% endblock %}

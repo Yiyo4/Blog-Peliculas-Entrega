@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- //////////////////////////////////////////////// main  -->
+<section>
+  {% load static %}
+  <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false">
+    <div class="carousel-inner">
+      {% for autor in autores %}
+        {% if autor.img %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="/static/{{ autor.img }}" class="d-block w-100 imagen" alt="{{ autor.nombre }}">
+          </div>
+        {% endif %}
+      {% endfor %}
+      <div class="overlay">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-10 offset-lg-2">
+              <h1 class="display-1" style="font-weight: bold;">Autores</h1>
+          </div>
+          </div>
+          <div id="footer" class="row align-items-end mb-4 text-white">
+            <div class="col-auto offset-5">
+              <button type="button" class="btn btn-success boton-scroll rounded-circle">
+                <a href="#main" class="text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                  </svg>
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main id="main" class="mt-4 pt-4 pb-4">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-5 pb-4">
+      {% for autor in autores %}
+      <div class="col">
+        <div class="card">
+          {% if autor.img %}
+          <img src="/static/{{ autor.img }}" class="autor-img align-self-center mt-4 rounded-circle" alt="Imagen del autor">
+          {% else %}
+          <img src="{% static 'img/nou.jpg' %}" class="autor-img align-self-center mt-4 rounded-circle" alt="Imagen por defecto">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ autor.nombre }}</h5>
+            <br>
+            <p class="card-text">
+              {% if autor.comentario %}
+                {{ autor.comentario }}
+              {% endif %}
+            </p>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <form action="/autor/{{ autor.id }}">
+                <button type="submit" class="btn btn-primary">Ver post</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+<!-- //////////////////////////////////////////////// end main  -->
+{% endblock %}

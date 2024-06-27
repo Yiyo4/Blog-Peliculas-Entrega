@@ -1,0 +1,36 @@
+{% extends 'user_profile.html' %}
+
+{% block actividad %}
+<div class="col-9 text-center my-5">
+    {% if resultados %}
+        <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-5 pb-4">
+            {% for resultado in resultados %}
+            <div class="col-3">
+                <div class="card">
+                    <img src="/static/{{ resultado.img }}" class="card-img-top" alt="{{ resultado.titulo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ resultado.titulo }}</h5>
+                        <span class="badge bg-primary">{{ resultado.autor }}</span>
+                        <br>
+                        {% for cat in resultado.posts.all %}
+                        <span class="badge bg-warning text-dark">{{ cat }}</span>
+                        {% endfor %}
+                        <p class="card-text text-truncate">{{ resultado.contenido }}</p>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <form action="/post/{{ resultado.id }}">
+                                <button type="submit" class="btn btn-success">Leer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    {% else %}
+      <div class="mb-4 lead">No tiene ningún post</div>
+      <a href="/user/{{ user.username }}/crearpost/" class="btn btn-link">Crear uno</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- //////////////////////////////////////////////// main  -->
+<main>
+    <div class="container navbar-light bg-light w-75 mt-5 rounded-1 shadow">
+        <div class="row align-items-sm-stretch container-login">
+            <div class="col bg-img d-none d-lg-block col-md-5 col-xl-6"></div>
+
+            <div class="col rounded-end">
+                {% if error %}
+                <div id="error" class="alert alert-danger text-center" role="alert">
+                    <h5>{{ error }}</h5>
+                </div>
+                {% endif %}
+                {% if succes %}
+                <div id="succes" class="alert alert-success text-center" role="alert">
+                    <h5>{{ succes }}</h5>
+                </div>
+                {% endif%}
+
+                <h2 class="fw-bold text-center">Regístrate </h2>
+
+                <form action="/registro/" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Correo electrónico </label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="mb-4">
+                      <label for="Nombre" class="form-label">Nombre</label>
+                      <input type="Nombre" class="form-control" name="nombre">
+                    </div>
+                    <div class="mb-4">
+                      <label for="a_paterno" class="form-label">Apellido Paterno</label>
+                      <input type="a_paterno" class="form-control" name="a_paterno">
+                    </div>
+                    <div class="mb-4">
+                      <label for="a_materno" class="form-label" >Apellido Materno</label>
+                      <input type="a_materno" class="form-control" name="a_materno">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" id="enviar" class="btn btn-primary">Registrar</button>
+                    </div>
+                    <div class="my-3 text-center">
+                        <span>¿Ya tienes una cuenta? <a href="/login">Inicia Sesión</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </main>
+  <!-- //////////////////////////////////////////////// end main  -->
+{% endblock %}
